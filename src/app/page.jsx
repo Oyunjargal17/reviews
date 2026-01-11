@@ -111,15 +111,14 @@ const reviews = [
 const ReviewList = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const nextPerson = () => {
-    setCurrentIndex(
-      currentIndex === reviews.length - 1 ? 0 : reviews.length + 1
-    );
+    setCurrentIndex(currentIndex === reviews.length - 1 ? 0 : currentIndex + 1);
   };
 
   const prevPerson = () => {
-    setCurrentIndex(
-      currentIndex === 0 ? reviews.length - 1 : reviews.length - 1
-    );
+    setCurrentIndex(currentIndex === 0 ? reviews.length - 1 : currentIndex - 1);
+  };
+  const randomPerson = () => {
+    setCurrentIndex(Math.floor(Math.random() * reviews.length));
   };
   return (
     <div>
@@ -133,6 +132,7 @@ const ReviewList = () => {
       />
       <button onClick={prevPerson}>prev</button>
       <button onClick={nextPerson}>next</button>
+      <button onClick={randomPerson}>random</button>
     </div>
   );
 
@@ -153,7 +153,7 @@ const ReviewList = () => {
   // );
 };
 
-const ReviewListItem = ({ key, id, image, name, job, text }) => {
+const ReviewListItem = ({ id, image, name, job, text }) => {
   return (
     <div>
       <img
